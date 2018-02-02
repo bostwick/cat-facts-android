@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/cat_fact_list_item_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        tools:text="Catfact Content goes here" />
+
+    <TextView
+        android:id="@+id/cat_fact_list_item_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        tools:text="Cat Fact #100" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimaryDark" />
+</merge>

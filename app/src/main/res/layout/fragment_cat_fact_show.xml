@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/cat_fact_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cat_fact_content"
+        android:layout_centerHorizontal="true"
+        tools:text="Cat Fact #100" />
+
+    <TextView
+        android:id="@+id/cat_fact_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:padding="@dimen/cat_fact_content_padding"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        tools:text="Cat Fact Content goes here" />
+
+    <ProgressBar
+        android:id="@+id/cat_fact_loading"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="true" />
+
+</RelativeLayout>
