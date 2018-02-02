@@ -12,6 +12,7 @@ import com.danielbostwick.catfacts.api.data.CatFact
 import com.danielbostwick.catfacts.presentation.CatFactShowView
 import com.danielbostwick.catfacts.presentation.CatFactShowPresenter
 import com.danielbostwick.catfacts.presentation.CatFactsNavigator
+import com.danielbostwick.catfacts.ui.GifImageView
 
 class CatFactShowFragment : BaseFragment(), CatFactShowView {
 
@@ -35,6 +36,7 @@ class CatFactShowFragment : BaseFragment(), CatFactShowView {
     private lateinit var loadingIndicator: ProgressBar
     private lateinit var catFactContent: TextView
     private lateinit var catFactId: TextView
+    private lateinit var nyanCat: GifImageView
 
     private lateinit var presenter: CatFactShowPresenter
 
@@ -53,6 +55,9 @@ class CatFactShowFragment : BaseFragment(), CatFactShowView {
         loadingIndicator = view.findViewById(R.id.cat_fact_loading)
         catFactContent = view.findViewById(R.id.cat_fact_content)
         catFactId = view.findViewById(R.id.cat_fact_id)
+        nyanCat = view.findViewById(R.id.cat_fact_loading_gif)
+
+        nyanCat.setGifImageResource(R.raw.nyan_cat)
     }
 
     override fun showCatFact(catFact: CatFact) {
@@ -63,7 +68,7 @@ class CatFactShowFragment : BaseFragment(), CatFactShowView {
     override var isLoadingVisible: Boolean
         get() = loadingIndicator.visibility == View.VISIBLE
         set(value) = when (value) {
-            true -> loadingIndicator.visibility = View.VISIBLE
-            false -> loadingIndicator.visibility = View.GONE
+            true -> nyanCat.visibility = View.VISIBLE // loadingIndicator.visibility = View.VISIBLE
+            false -> nyanCat.visibility = View.GONE // loadingIndicator.visibility = View.GONE
         }
 }

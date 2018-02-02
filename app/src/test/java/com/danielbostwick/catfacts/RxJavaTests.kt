@@ -31,10 +31,10 @@ class RxJavaTests {
     fun rxJavaCanSwitchThreadsAtWill() {
         val countDownLatch = CountDownLatch(1)
         val myScheduler = Schedulers.from(Executors.newSingleThreadExecutor(object : ThreadFactory {
-            override fun newThread(r: Runnable?) = Thread(r, "myThread")
+            override fun newThread(r: Runnable?) = Thread(r, "myScheduler")
         }))
 
-        Observable.just(0, 1, 2, 3, 4)
+        Observable.just(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
                 // Emitted on a new Thread
                 .observeOn(Schedulers.newThread())
                 .doOnNext { printWithThread("source: $it") }
