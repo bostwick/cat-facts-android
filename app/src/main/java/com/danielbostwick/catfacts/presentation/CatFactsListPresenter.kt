@@ -32,10 +32,10 @@ class CatFactsListPresenter(val view: CatFactsListView,
 
         catFactsApi.getAllCatfacts()
                 .delay(2, TimeUnit.SECONDS)
-                .doOnSubscribe { view.isLoadingVisible = true }
-                .doOnUnsubscribe { view.isLoadingVisible = false }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { view.isLoadingVisible = true }
+                .doOnUnsubscribe { view.isLoadingVisible = false }
                 .subscribe(
                         { view.showCatFacts(it) },
                         { Log.e(TAG, Log.getStackTraceString(it)) })
