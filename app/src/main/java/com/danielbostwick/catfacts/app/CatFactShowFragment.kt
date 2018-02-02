@@ -1,5 +1,6 @@
 package com.danielbostwick.catfacts.app
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import com.danielbostwick.catfacts.R
 import com.danielbostwick.catfacts.api.data.CatFact
 import com.danielbostwick.catfacts.presentation.CatFactShowView
 import com.danielbostwick.catfacts.presentation.CatFactShowPresenter
+import com.danielbostwick.catfacts.presentation.CatFactsNavigator
 
 class CatFactShowFragment : BaseFragment(), CatFactShowView {
 

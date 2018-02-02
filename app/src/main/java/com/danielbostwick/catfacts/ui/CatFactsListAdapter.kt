@@ -11,11 +11,11 @@ class CatFactsListAdapter : RecyclerView.Adapter<CatFactListItemVH>() {
     private val TAG = this::class.java.simpleName
     private val items: ArrayList<CatFact> = ArrayList()
 
-    val itemClicks = PublishSubject.create<CatFactListItemView>()
+    val itemClicks = PublishSubject.create<CatFact>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatFactListItemVH {
         val view = CatFactListItemView(parent.context)
-        view.clicks.subscribe { itemClicks.onNext(it) }
+        view.clicks.subscribe { itemClicks.onNext(it.catFact) }
 
         return CatFactListItemVH(view)
     }

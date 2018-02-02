@@ -2,7 +2,6 @@ package com.danielbostwick.catfacts.presentation
 
 import android.util.Log
 import com.danielbostwick.catfacts.api.CatFactsApi
-import com.danielbostwick.catfacts.api.data.CatFact
 import com.trello.rxlifecycle.android.FragmentEvent
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -11,6 +10,7 @@ import java.util.concurrent.TimeUnit
 
 class CatFactsListPresenter(val view: CatFactsListView,
                             val lifecycle: Observable<FragmentEvent>,
+                            val navigator: CatFactsNavigator,
                             val catFactsApi: CatFactsApi) {
 
     val TAG = CatFactsListPresenter::class.java.simpleName
@@ -19,6 +19,12 @@ class CatFactsListPresenter(val view: CatFactsListView,
         lifecycle.takeUntil { it == FragmentEvent.PAUSE }
                 .filter { it == FragmentEvent.RESUME }
                 .subscribe { fetchCatFacts() }
+
+        view.catFactClicks
+                .doOnNext { Log.d(TAG, "catFactClick - catFact:$it") }
+                .subscribe(
+                        { navigator.navigateToShowCatFact(it.id) },
+                        { Log.e(TAG, Log.getStackTraceString(it)) })
     }
 
     private fun fetchCatFacts() {
@@ -33,11 +39,5 @@ class CatFactsListPresenter(val view: CatFactsListView,
                 .subscribe(
                         { view.showCatFacts(it) },
                         { Log.e(TAG, Log.getStackTraceString(it)) })
-    }
-
-    fun onCatFactClicked(catFact: CatFact) {
-        Log.d(TAG, "onCatFactClicked() - catFact:$catFact")
-
-        view.showCatFact(catFact)
     }
 }

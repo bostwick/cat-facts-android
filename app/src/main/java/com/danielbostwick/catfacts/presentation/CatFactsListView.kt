@@ -1,11 +1,12 @@
 package com.danielbostwick.catfacts.presentation
 
 import com.danielbostwick.catfacts.api.data.CatFact
+import rx.Observable
 
 interface CatFactsListView {
-    fun showCatFacts(items: List<CatFact>)
+    val catFactClicks: Observable<CatFact>
 
-    fun showCatFact(catFact: CatFact)
+    fun showCatFacts(items: List<CatFact>)
 
     var isLoadingVisible: Boolean
 }

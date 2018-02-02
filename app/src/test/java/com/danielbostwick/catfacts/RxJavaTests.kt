@@ -34,7 +34,7 @@ class RxJavaTests {
             override fun newThread(r: Runnable?) = Thread(r, "myThread")
         }))
 
-        Observable.just(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+        Observable.just(0, 1, 2, 3, 4)
                 // Emitted on a new Thread
                 .observeOn(Schedulers.newThread())
                 .doOnNext { printWithThread("source: $it") }
@@ -49,7 +49,7 @@ class RxJavaTests {
                 .filter(::isEven)
                 .doOnNext { printWithThread("evensOnly: $it") }
 
-                // Observe the final result on my own scheduler
+                // Observe the final result on myScheduler
                 .observeOn(myScheduler)
                 .doOnUnsubscribe { countDownLatch.countDown() }
                 .subscribe { printWithThread("observed: $it") }
